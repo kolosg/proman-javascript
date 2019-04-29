@@ -20,6 +20,7 @@ export let dom = {
     init: function () {
         let board = document.getElementById('boards');
         board.innerHTML = '';
+        
         // This function should run once, when the page is loaded.
     },
     loadBoards: function () {
