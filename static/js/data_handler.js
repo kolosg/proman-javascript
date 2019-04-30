@@ -8,7 +8,8 @@ export let dataHandler = {
     _api_get: function (url, callback) {
         // it is not called from outside
         // loads data from API, parses it and calls the callback with it
-
+        const json = JSON.parse('[{"id": "1", "title": "Board 1"}, {"id": "2", "title": "Board 2"}]');
+        console.log(json);
         fetch(url, {
             method: 'GET',
             credentials: 'same-origin'
