@@ -4,7 +4,6 @@ import persistence
 import data_handler
 import json
 
-
 app = Flask(__name__)
 
 
@@ -22,8 +21,14 @@ def get_boards():
     """
     All the boards
     """
-
     return persistence.get_sql_boards()
+
+
+@app.route("/get-statuses")
+@json_response
+def get_statuses():
+
+    return persistence.get_statuses()
 
 
 @app.route("/get-cards/<int:board_id>")
