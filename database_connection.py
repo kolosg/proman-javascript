@@ -87,6 +87,7 @@ def execute_select(statement, variables=None):
     return result_set
 
 
+
 def execute_dml_statement(statement, variables=None):
     """
     Execute data manipulation query statement (optionally parameterized)

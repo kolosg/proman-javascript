@@ -9,6 +9,8 @@ function init() {
     // add event listener on 'add new board' button
     dom.addNewBoardEventListener()
 
+
+
 }
 
 init();
