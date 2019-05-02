@@ -18,8 +18,6 @@ export let dom = {
         return elementToExtend.lastChild;
     },
     init: function () {
-        let board = document.getElementById('boards');
-        board.innerHTML = '';
         // This function should run once, when the page is loaded.
     },
     loadBoards: function () {
@@ -28,25 +26,34 @@ export let dom = {
             dom.showBoards(boards);
         });
     },
+    getBoardTitle: function (title) {
+        const template = document.querySelector('#board');
+        const clone = document.importNode(template.content, true);
+
+        clone.querySelector('.board-title').textContent = title;
+
+    return clone;
+    },
+
+   /* const cardElement = createCard(
+    'Card title',
+    'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+    'https://cdn-images-1.medium.com/max/653/1*wMZnVAEei1xbY1v6sAbYxQ.png');
+document.querySelector('#container').appendChild(cardElement);*/
+
+
     showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
-
-        let boardList = '';
-
-        for(let board of boards){
-            boardList += `
-                <li>${board.title}</li>
-            `;
+        //console.log(clone);
+        let boardList = document.createElement("section");
+        boardList.id ="board";
+        for (let board of boards) {
+            boardList.appendChild(this.getBoardTitle(board.title))
         }
 
-        const outerHtml = `
-            <ul class="board-container">
-                ${boardList}
-            </ul>
-        `;
-
-        this._appendToElement(document.querySelector('#boards'), outerHtml);
+        let container = document.querySelector('.board-container');
+        container.appendChild(boardList);
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
