@@ -33,8 +33,8 @@ export let dom = {
         const clone = document.importNode(template.content, true);
 
         if (title[1] == 'New Board') {
-            console.log("YES")
             clone.querySelector('.board-title').textContent = title[1];
+            console.log("yes")
         } else {
             clone.querySelector('.board-title').textContent = title;
         }
