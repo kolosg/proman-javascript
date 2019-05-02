@@ -16,3 +16,8 @@ def get_statuses():
 
 def get_cards():
     return database_connection.execute_select('SELECT * FROM cards;')
+
+
+def add_new_board(title):
+    return database_connection.execute_dml_statement("""INSERT INTO boards (title)
+                                                        VALUES (%(title)s) RETURNING *""", dict(title=title))
