@@ -35,8 +35,15 @@ export let dom = {
         boardId.setAttribute("data-id", `${id}`);
         dom.loadStatuses();
 
+        if (title[1] == 'New Board') {
+            clone.querySelector('.board-title').textContent = title[1];
+        } else {
+            clone.querySelector('.board-title').textContent = title;
+        }
+
         return clone;
     },
+
     getCardTemplate: function (title, id) {
         const template = document.querySelector('#card');
         const clone = document.importNode(template.content, true);
@@ -70,10 +77,34 @@ export let dom = {
         // it adds necessary event listeners also
         for (let card of cards) {
             const boardDiv = document.querySelector(`[data-id='${card.board_id}']`);
-            const columnDiv = boardDiv.querySelector(`[data-status-id='${card.status_id}'`)
+            const columnDiv = boardDiv.querySelector(`[data-status-id='${card.status_id}'`);
             columnDiv.appendChild(this.getCardTemplate(card.title, card.id))
 
         }
+    },
+    addNewBoardEventListener: function () {
+        let addNewBoardButton = document.getElementsByClassName("add-new-board-button");
+        addNewBoardButton[0].addEventListener("click", this.addNewBoardClickHandler)
+    },
+
+
+    addNewBoardClickHandler: function () {
+        dataHandler.addNewBoard(function (newCardTitle) {
+            dom.showBoard(newCardTitle);
+        })
+
+    },
+
+    showBoard: function (newCardTitle) {
+        let boardList = document.createElement("section");
+        boardList.id ="board";
+
+        boardList.appendChild(this.getBoardTemplate(newCardTitle));
+
+
+
+        let container = document.querySelector('.board-container');
+        container.appendChild(boardList);
     },
     // here comes more features
 };

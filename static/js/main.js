@@ -7,6 +7,8 @@ function init() {
     // loads the boards to the screen
     dom.loadBoards();
     // add event listener on 'add new board' button
+    dom.addNewBoardEventListener()
+
 
 
 }
