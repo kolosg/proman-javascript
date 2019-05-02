@@ -26,20 +26,22 @@ export let dom = {
             dom.showBoards(boards);
         });
     },
+
+
     getBoardTitle: function (title) {
         const template = document.querySelector('#board');
         const clone = document.importNode(template.content, true);
 
-        clone.querySelector('.board-title').textContent = title;
+        if (title[1] == 'New Board') {
+            console.log("YES")
+            clone.querySelector('.board-title').textContent = title[1];
+        } else {
+            clone.querySelector('.board-title').textContent = title;
+        }
+
 
     return clone;
     },
-
-   /* const cardElement = createCard(
-    'Card title',
-    'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
-    'https://cdn-images-1.medium.com/max/653/1*wMZnVAEei1xbY1v6sAbYxQ.png');
-document.querySelector('#container').appendChild(cardElement);*/
 
 
     showBoards: function (boards) {
@@ -54,7 +56,35 @@ document.querySelector('#container').appendChild(cardElement);*/
 
         let container = document.querySelector('.board-container');
         container.appendChild(boardList);
+
     },
+
+
+    addNewBoardEventListener: function () {
+        let addNewBoardButton = document.getElementsByClassName("add-new-board-button");
+        addNewBoardButton[0].addEventListener("click", this.addNewBoardClickHandler)
+    },
+
+
+    addNewBoardClickHandler: function () {
+        dataHandler.addNewBoard(function (newCardTitle) {
+            dom.showBoard(newCardTitle);
+        })
+
+    },
+
+    showBoard: function (newCardTitle) {
+        let boardList = document.createElement("section");
+        boardList.id ="board";
+
+        boardList.appendChild(this.getBoardTitle(newCardTitle));
+
+
+
+        let container = document.querySelector('.board-container');
+        container.appendChild(boardList);
+    },
+
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
     },
