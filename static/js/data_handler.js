@@ -51,6 +51,7 @@ export let dataHandler = {
         //    if we would use function(){...} here, the value of 'this' would change.
         this._api_post('/add-new-board', {title: 'New Board'}, (response) => {
             this._data = response;
+
             callback(response);
         });
     },

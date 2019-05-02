@@ -34,7 +34,6 @@ export let dom = {
 
         if (title[1] == 'New Board') {
             clone.querySelector('.board-title').textContent = title[1];
-            console.log("yes")
         } else {
             clone.querySelector('.board-title').textContent = title;
         }
