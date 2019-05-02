@@ -37,10 +37,14 @@ button{
     margin: 0 auto;
 }
 
+.board-template {
+    background: #ffffff90;
+}
+
 section.board{
     margin: 20px;
     border: aliceblue;
-    background: #ffffff90;
+    background-color: #ffffff90;
     border-radius: 3px;
 }
 
