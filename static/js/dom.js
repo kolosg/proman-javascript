@@ -114,8 +114,11 @@ export let dom = {
                 cardTitle.innerHTML = title;
                 cardTitle.contentEditable = 'false';
                 cardTitle.id = 'noteditable';
-
-
+            } else if (evt.key === 'Enter') {
+                const cardTitle = document.getElementById('contenteditable');
+                cardTitle.contentEditable = 'false';
+                cardTitle.id = 'noteditable';
+                dataHandler.updateCardTitle(cardTitle.innerHTML, cardTitle.closest(".card").dataset.id)
             }
         };
     },
@@ -146,12 +149,12 @@ export let dom = {
             }
         };
 
-        const boardTitle = document.getElementById('contenteditable');
+        /*const boardTitle = document.getElementById('contenteditable');
         boardTitle.onblur = function () {
             boardTitle.innerHTML = title;
             boardTitle.contentEditable = 'false';
             boardTitle.id = 'noteditable';
-        }
+        }*/
 
     },
 

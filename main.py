@@ -58,6 +58,13 @@ def update_board_title():
     pass
 
 
+@app.route('/update-card-title', methods=["GET", "POST"])
+@json_response
+def update_card_title():
+    data_handler.update_card_title(request.get_json()["newtitle"], request.get_json()["cardid"])
+    pass
+
+
 def main():
     app.run(debug=True)
 
