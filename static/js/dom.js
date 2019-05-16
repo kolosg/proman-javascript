@@ -102,24 +102,30 @@ export let dom = {
 
     boardTitleClickHandler: function () {
         this.contentEditable = 'true';
+        this.id = 'contenteditable';
+        const title = this.innerHTML;
         document.onkeydown = function(evt) {
             evt = evt || window.event;
             if (evt.key === 'Escape') {
-                alert('esc')
-                this.innerHTML = 'esc';
+                const boardTitle = document.getElementById('contenteditable');
+                boardTitle.innerHTML = title;
+                boardTitle.contentEditable = 'false';
+                boardTitle.id = 'noteditable';
+
+
             }
     };
 
     },
 
     showBoard: function (newCardTitle) {
-        let boardList = document.createElement("section");
+        let boardList = document.createElement("div");
         boardList.id ="board";
 
         boardList.appendChild(this.getBoardTemplate(newCardTitle[1], newCardTitle[0]));
 
 
-        let container = document.querySelector('.board-container');
+        let container = document.getElementsByTagName('section')[0];
         ///container.appendChild(boardList);
 
         container.insertAdjacentElement("afterbegin", boardList);
