@@ -46,6 +46,8 @@ def get_cards_for_board(board_id: int):
 def add_new_board():
 
     title = request.get_json()['title']
+
+
     return data_handler.add_new_board(title)
 
 

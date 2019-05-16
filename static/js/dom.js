@@ -35,12 +35,6 @@ export let dom = {
         boardId.setAttribute("data-id", `${id}`);
         dom.loadStatuses();
 
-        if (title[1] == 'New Board') {
-            clone.querySelector('.board-title').textContent = title[1];
-        } else {
-            clone.querySelector('.board-title').textContent = title;
-        }
-
         return clone;
     },
 
@@ -99,12 +93,14 @@ export let dom = {
         let boardList = document.createElement("section");
         boardList.id ="board";
 
-        boardList.appendChild(this.getBoardTemplate(newCardTitle));
-
+        boardList.appendChild(this.getBoardTemplate(newCardTitle[1], newCardTitle[0]));
 
 
         let container = document.querySelector('.board-container');
         container.appendChild(boardList);
+
+        ///container.insertAdjacentElement("afterbegin", boardList);
+
     },
     // here comes more features
 };
