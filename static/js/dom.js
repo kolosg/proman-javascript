@@ -59,6 +59,9 @@ export let dom = {
         let container = document.querySelector('.board-container');
         container.appendChild(boardList);
 
+        // add event listener on board title to be editable
+        this.addEventListenerOnBoardTitle()
+
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
@@ -89,6 +92,26 @@ export let dom = {
 
     },
 
+    addEventListenerOnBoardTitle: function () {
+        const boardTitles = document.getElementsByClassName('board-title');
+        console.log(boardTitles)
+        for (let boardTitle of boardTitles) {
+            boardTitle.addEventListener('click', this.boardTitleClickHandler)
+        }
+    },
+
+    boardTitleClickHandler: function () {
+        this.contentEditable = 'true';
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.key === 'Escape') {
+                alert('esc')
+                this.innerHTML = 'esc';
+            }
+    };
+
+    },
+
     showBoard: function (newCardTitle) {
         let boardList = document.createElement("section");
         boardList.id ="board";
@@ -97,9 +120,12 @@ export let dom = {
 
 
         let container = document.querySelector('.board-container');
-        container.appendChild(boardList);
+        ///container.appendChild(boardList);
 
-        ///container.insertAdjacentElement("afterbegin", boardList);
+        container.insertAdjacentElement("afterbegin", boardList);
+
+        // add event listener on board title to be editable
+        this.addEventListenerOnBoardTitle()
 
     },
     // here comes more features
