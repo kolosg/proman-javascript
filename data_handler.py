@@ -23,6 +23,10 @@ def add_new_board(title):
     return persistence.add_new_board(title)
 
 
+def update_board_title(title, id):
+    return persistence.update_board_title(title, id)
+
+
 def get_cards_for_board(board_id):
     persistence.clear_cache()
     all_cards = persistence.get_cards()
