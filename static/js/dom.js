@@ -69,6 +69,7 @@ export let dom = {
             dom.showCards(cards, boardId)
         })
     },
+
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
@@ -78,7 +79,9 @@ export let dom = {
             columnDiv.appendChild(this.getCardTemplate(card.title, card.id))
 
         }
+        this.addEventListenerOnCardTitle()
     },
+
     addNewBoardEventListener: function () {
         let addNewBoardButton = document.getElementsByClassName("add-new-board-button");
         addNewBoardButton[0].addEventListener("click", this.addNewBoardClickHandler)
@@ -92,9 +95,33 @@ export let dom = {
 
     },
 
+    addEventListenerOnCardTitle: function () {
+        const cardTitles = document.getElementsByClassName("card-title");
+        console.log(cardTitles);
+        for (let cardTitle of cardTitles) {
+            cardTitle.addEventListener("click", this.cardTitleClickHandler)
+        }
+    },
+
+    cardTitleClickHandler: function () {
+        this.contentEditable = 'true';
+        this.id = 'contenteditable';
+        const title = this.innerHTML;
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.key === 'Escape') {
+                const cardTitle = document.getElementById('contenteditable');
+                cardTitle.innerHTML = title;
+                cardTitle.contentEditable = 'false';
+                cardTitle.id = 'noteditable';
+
+
+            }
+        };
+    },
+
     addEventListenerOnBoardTitle: function () {
         const boardTitles = document.getElementsByClassName('board-title');
-        console.log(boardTitles)
         for (let boardTitle of boardTitles) {
             boardTitle.addEventListener('click', this.boardTitleClickHandler)
         }
@@ -131,7 +158,7 @@ export let dom = {
         container.insertAdjacentElement("afterbegin", boardList);
 
         // add event listener on board title to be editable
-        this.addEventListenerOnBoardTitle()
+        this.addEventListenerOnBoardTitle();
 
     },
     // here comes more features
