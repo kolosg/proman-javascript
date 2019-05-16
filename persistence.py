@@ -7,7 +7,7 @@ def clear_cache():
         _cache.pop(k)
 
 def get_sql_boards():
-    return database_connection.execute_select('SELECT * FROM boards;')
+    return database_connection.execute_select('SELECT * FROM boards ORDER BY id DESC;')
 
 
 def get_statuses():
