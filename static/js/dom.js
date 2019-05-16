@@ -94,7 +94,6 @@ export let dom = {
 
     addEventListenerOnBoardTitle: function () {
         const boardTitles = document.getElementsByClassName('board-title');
-        console.log(boardTitles)
         for (let boardTitle of boardTitles) {
             boardTitle.addEventListener('click', this.boardTitleClickHandler)
         }
@@ -111,10 +110,20 @@ export let dom = {
                 boardTitle.innerHTML = title;
                 boardTitle.contentEditable = 'false';
                 boardTitle.id = 'noteditable';
-
-
+            } else if (evt.key === 'Enter') {
+                const boardTitle = document.getElementById('contenteditable');
+                boardTitle.contentEditable = 'false';
+                boardTitle.id = 'noteditable';
+                dataHandler.updateBoardTitle(boardTitle.innerHTML, boardTitle.closest(".board-template").dataset.id)
             }
-    };
+        };
+
+        const boardTitle = document.getElementById('contenteditable');
+        boardTitle.onblur = function () {
+            boardTitle.innerHTML = title;
+            boardTitle.contentEditable = 'false';
+            boardTitle.id = 'noteditable';
+        }
 
     },
 

@@ -21,3 +21,7 @@ def get_cards():
 def add_new_board(title):
     return database_connection.execute_dml_statement("""INSERT INTO boards (title)
                                                         VALUES (%(title)s) RETURNING *""", dict(title=title))
+
+
+def update_board_title(title, id):
+    return database_connection.execute_dml_statement("""UPDATE boards SET title = %(title)s WHERE id = %(id)s""", dict(title=title,id=id))

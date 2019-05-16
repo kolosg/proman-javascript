@@ -51,6 +51,12 @@ def add_new_board():
     return data_handler.add_new_board(title)
 
 
+@app.route('/update-board-title', methods=["GET", "POST"])
+@json_response
+def update_board_title():
+    data_handler.update_board_title(request.get_json()["newtitle"], request.get_json()["boardid"])
+    pass
+
 
 def main():
     app.run(debug=True)
