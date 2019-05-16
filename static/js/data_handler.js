@@ -60,6 +60,10 @@ export let dataHandler = {
       this._api_post('/update-board-title', {newtitle: newBoardTitle, boardid: boardId})
     },
 
+    updateCardTitle: function (newCardTitle, CardId) {
+      this._api_post('/update-card-title', {newtitle: newCardTitle, cardid: CardId})
+    },
+
     getBoard: function (boardId, callback) {
         // the board is retrieved and then the callback function is called with the board
     },

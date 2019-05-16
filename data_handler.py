@@ -27,6 +27,10 @@ def update_board_title(title, id):
     return persistence.update_board_title(title, id)
 
 
+def update_card_title(title, id):
+    return persistence.update_card_title(title, id)
+
+
 def get_cards_for_board(board_id):
     persistence.clear_cache()
     all_cards = persistence.get_cards()
